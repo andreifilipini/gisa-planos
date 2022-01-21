@@ -3,6 +3,7 @@ package com.gisa.gisaplanos.dto;
 import java.math.BigDecimal;
 
 import com.gisa.gisaplanos.model.TipoAtendimento;
+import com.gisa.gisaplanos.model.TipoPlano;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -22,8 +23,10 @@ public class PlanoDTO {
 	private Long qtdConsultasAno;
 
 	private Long qtdExamesAno;
-	
+
 	private BigDecimal valor;
 
 	private TipoAtendimento tipoAtendimento;
+
+	private TipoPlano tipoPlano;
 }

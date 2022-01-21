@@ -29,7 +29,8 @@ public class PlanoController {
 	private PlanoDTO toDTO(Plano plano) {
 		return PlanoDTO.builder().id(plano.getId()).descricao(plano.getDescricao()).ativo(plano.isAtivo())
 				.qtdConsultasAno(plano.getQtdConsultasAno()).qtdExamesAno(plano.getQtdExamesAno())
-				.valor(plano.getValor()).tipoAtendimento(plano.getTipoAtendimento()).build();
+				.valor(plano.getValor()).tipoAtendimento(plano.getTipoAtendimento()).tipoPlano(plano.getTipoPlano())
+				.build();
 	}
 
 }

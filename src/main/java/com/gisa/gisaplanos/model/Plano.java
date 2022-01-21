@@ -39,4 +39,8 @@ public class Plano {
 	@Setter
 	@Enumerated(EnumType.STRING)
 	private TipoAtendimento tipoAtendimento;
+
+	@Setter
+	@Enumerated(EnumType.STRING)
+	private TipoPlano tipoPlano;
 }
