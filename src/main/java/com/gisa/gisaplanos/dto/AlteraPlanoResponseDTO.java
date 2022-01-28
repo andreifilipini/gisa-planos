@@ -9,6 +9,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class AlteraPlanoResponseDTO implements Serializable {
 
-    private Long idAssociado;
+    private Long idTransacao;
     private boolean aprovado;
 }

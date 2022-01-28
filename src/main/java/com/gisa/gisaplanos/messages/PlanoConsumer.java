@@ -29,7 +29,7 @@ public class PlanoConsumer {
         Gson gson = new Gson();
         AlteraPlanoRequestDTO request = gson.fromJson(body, AlteraPlanoRequestDTO.class);
 
-        AlteraPlanoResponseDTO response = new AlteraPlanoResponseDTO(request.getIdAssociado(), planoService.isAtivo(request.getIdPlano()));
+        AlteraPlanoResponseDTO response = new AlteraPlanoResponseDTO(request.getIdTransacao(), planoService.isAtivo(request.getIdPlano()));
         rabbitTemplate.convertAndSend(this.changePlanResultQueueName, gson.toJson(response));
     }
 }

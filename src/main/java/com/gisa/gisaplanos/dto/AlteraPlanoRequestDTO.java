@@ -9,6 +9,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class AlteraPlanoRequestDTO implements Serializable {
 
-    private Long idAssociado;
+    private Long idTransacao;
     private Long idPlano;
 }
