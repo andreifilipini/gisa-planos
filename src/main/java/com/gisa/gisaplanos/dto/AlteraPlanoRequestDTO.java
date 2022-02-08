@@ -1,14 +1,12 @@
 package com.gisa.gisaplanos.dto;
 
+import com.gisa.gisacore.dto.BasicTransactionRequestDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-
 @Getter
 @NoArgsConstructor
-public class AlteraPlanoRequestDTO implements Serializable {
+public class AlteraPlanoRequestDTO extends BasicTransactionRequestDTO {
 
-    private Long idTransacao;
     private Long idPlano;
 }

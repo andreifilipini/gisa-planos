@@ -14,15 +14,15 @@ public class QueueConfig {
     @Inject
     private AmqpAdmin amqpAdmin;
 
-    @Value("${queue.changePlan}")
-    private String changePlanQueueName;
+    @Value("${queue.changePlanLegacyResult}")
+    private String changePlanLegacyResultQueueName;
 
     @Value("${queue.changePlanResult}")
     private String changePlanResultQueueName;
 
     @PostConstruct
     protected void createQueues() {
-        amqpAdmin.declareQueue(new Queue(this.changePlanQueueName, true));
+        amqpAdmin.declareQueue(new Queue(this.changePlanLegacyResultQueueName, true));
         amqpAdmin.declareQueue(new Queue(this.changePlanResultQueueName, true));
     }
 }

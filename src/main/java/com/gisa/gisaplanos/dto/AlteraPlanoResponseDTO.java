@@ -1,14 +1,24 @@
 package com.gisa.gisaplanos.dto;
 
-import lombok.AllArgsConstructor;
+import com.gisa.gisacore.dto.BasicTransactionResponseDTO;
+import com.gisa.gisaplanos.model.TipoAtendimento;
+import com.gisa.gisaplanos.model.TipoPlano;
 import lombok.Getter;
-
-import java.io.Serializable;
+import lombok.Setter;
 
 @Getter
-@AllArgsConstructor
-public class AlteraPlanoResponseDTO implements Serializable {
+public class AlteraPlanoResponseDTO extends BasicTransactionResponseDTO {
 
-    private Long idTransacao;
-    private boolean aprovado;
+    private Long idPlano;
+
+    @Setter
+    private TipoAtendimento tipoAtendimento;
+
+    @Setter
+    private TipoPlano tipoPlano;
+
+    public AlteraPlanoResponseDTO(Long transactionId, boolean approved, Long idPlano) {
+        super(transactionId, approved);
+        this.idPlano = idPlano;
+    }
 }

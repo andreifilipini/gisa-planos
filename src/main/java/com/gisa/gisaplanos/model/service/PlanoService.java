@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PlanoService {
@@ -18,8 +17,7 @@ public class PlanoService {
 		return repository.findAll();
 	}
 
-	public boolean isAtivo(Long id) {
-		Optional<Plano> plano = repository.findById(id);
-		return plano.isPresent() && plano.get().isAtivo();
+	public Plano findById(Long id) {
+		return repository.findById(id).orElse(null);
 	}
 }

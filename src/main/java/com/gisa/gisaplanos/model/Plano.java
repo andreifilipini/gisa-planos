@@ -1,16 +1,12 @@
 package com.gisa.gisaplanos.model;
 
-import java.math.BigDecimal;
-
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 @Entity
 @Getter
@@ -18,14 +14,12 @@ import lombok.Setter;
 public class Plano {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull
 	@Setter
 	private String descricao;
-
-	@Setter
-	private boolean ativo;
 
 	@Setter
 	private Long qtdConsultasAno;

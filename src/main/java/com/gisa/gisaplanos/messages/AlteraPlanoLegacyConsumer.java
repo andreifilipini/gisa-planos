@@ -1,8 +1,8 @@
 package com.gisa.gisaplanos.messages;
 
 import com.gisa.gisacore.messages.AbstractRabbitConsumer;
-import com.gisa.gisaplanos.dto.AlteraPlanoRequestDTO;
 import com.gisa.gisaplanos.dto.AlteraPlanoResponseDTO;
+import com.gisa.gisaplanos.model.Plano;
 import com.gisa.gisaplanos.model.service.PlanoService;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +17,7 @@ import javax.inject.Inject;
 
 @Slf4j
 @Component
-public class PlanoConsumer extends AbstractRabbitConsumer {
+public class AlteraPlanoLegacyConsumer extends AbstractRabbitConsumer {
 
     @Inject
     private RabbitTemplate rabbitTemplate;
@@ -28,7 +28,7 @@ public class PlanoConsumer extends AbstractRabbitConsumer {
     @Value("${queue.changePlanResult}")
     private String changePlanResultQueueName;
 
-    @RabbitListener(queues = {"${queue.changePlan}"})
+    @RabbitListener(queues = {"${queue.changePlanLegacyResult}"})
     protected void receive(@Payload String body) {
         executeLoggin(body);
     }
@@ -36,9 +36,14 @@ public class PlanoConsumer extends AbstractRabbitConsumer {
     @Override
     protected void execute(@Payload String body) {
         Gson gson = new Gson();
-        AlteraPlanoRequestDTO request = gson.fromJson(body, AlteraPlanoRequestDTO.class);
+        AlteraPlanoResponseDTO legacyResponse = gson.fromJson(body, AlteraPlanoResponseDTO.class);
 
-        AlteraPlanoResponseDTO response = new AlteraPlanoResponseDTO(request.getIdTransacao(), planoService.isAtivo(request.getIdPlano()));
+        Plano plano = planoService.findById(legacyResponse.getIdPlano());
+        AlteraPlanoResponseDTO response = new AlteraPlanoResponseDTO(legacyResponse.getTransactionId(), legacyResponse.isApproved(), legacyResponse.getIdPlano());
+        if (plano != null) {
+            response.setTipoAtendimento(plano.getTipoAtendimento());
+            response.setTipoPlano(plano.getTipoPlano());
+        }
         rabbitTemplate.convertAndSend(this.changePlanResultQueueName, gson.toJson(response));
     }
 
