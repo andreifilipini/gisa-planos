@@ -1,5 +1,6 @@
 package com.gisa.gisaplanos.filter;
 
+import com.gisa.gisacore.model.RoleEnum;
 import com.gisa.gisacore.util.JwtTokenUtil;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class SecurityFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         String jwtToken = jwtTokenUtil.getJwtToken((HttpServletRequest) request);
-        if (!this.jwtTokenUtil.isExpired(jwtToken) && this.jwtTokenUtil.verifyContainRole(jwtToken, "ASSOCIADO", "CONVENIADO")) {
+        if (!this.jwtTokenUtil.isExpired(jwtToken) && this.jwtTokenUtil.verifyContainRole(jwtToken, RoleEnum.ASSOCIADO, RoleEnum.CONVENIADO)) {
             chain.doFilter(request, response);
             response.getOutputStream().println();
         } else {
