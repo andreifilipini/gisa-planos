@@ -38,8 +38,8 @@ public class AlteraPlanoLegacyConsumer extends AbstractRabbitConsumer {
         Gson gson = new Gson();
         AlteraPlanoResponseDTO legacyResponse = gson.fromJson(body, AlteraPlanoResponseDTO.class);
 
-        Plano plano = planoService.findById(legacyResponse.getIdPlano());
-        AlteraPlanoResponseDTO response = new AlteraPlanoResponseDTO(legacyResponse.getTransactionId(), legacyResponse.isApproved(), legacyResponse.getIdPlano());
+        Plano plano = planoService.findById(Long.valueOf(legacyResponse.getPlanoId()));
+        AlteraPlanoResponseDTO response = new AlteraPlanoResponseDTO(legacyResponse.getTransactionId(), legacyResponse.isApproved(), legacyResponse.getPlanoId());
         if (plano != null) {
             response.setTipoAtendimento(plano.getTipoAtendimento());
             response.setTipoPlano(plano.getTipoPlano());

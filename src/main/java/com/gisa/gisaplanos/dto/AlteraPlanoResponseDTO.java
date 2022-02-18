@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 public class AlteraPlanoResponseDTO extends BasicTransactionResponseDTO {
 
-    private Long idPlano;
+    private String planoId;
 
     @Setter
     private TipoAtendimento tipoAtendimento;
@@ -17,8 +17,8 @@ public class AlteraPlanoResponseDTO extends BasicTransactionResponseDTO {
     @Setter
     private TipoPlano tipoPlano;
 
-    public AlteraPlanoResponseDTO(Long transactionId, boolean approved, Long idPlano) {
+    public AlteraPlanoResponseDTO(Long transactionId, boolean approved, String planoId) {
         super(transactionId, approved);
-        this.idPlano = idPlano;
+        this.planoId = planoId;
     }
 }
