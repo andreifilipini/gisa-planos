@@ -11,5 +11,4 @@ public class GisaPlanosApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GisaPlanosApplication.class, args);
 	}
-
 }
